@@ -33,6 +33,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+        freeCompilerArgs += listOf("-opt-in=androidx.compose.animation.ExperimentalSharedTransitionApi")
     }
     buildFeatures {
         compose = true
