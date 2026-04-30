@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.karishma.swiggyanimation.ui.theme.SwiggyAnimationTheme
 
-private enum class Screen { Home, Restaurant, Cart, Cinema }
+private enum class Screen { Home, Restaurant, Cart, Cinema, Music }
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,11 +44,13 @@ class MainActivity : ComponentActivity() {
                 when (screen) {
                     Screen.Home -> HomeScreen(
                         onOpenRestaurant = { screen = Screen.Restaurant },
-                        onOpenCinema = { screen = Screen.Cinema }
+                        onOpenCinema = { screen = Screen.Cinema },
+                        onOpenMusic = { screen = Screen.Music }
                     )
                     Screen.Restaurant -> RestaurantScreen(onViewCart = { screen = Screen.Cart })
                     Screen.Cart -> CartScreen(onBack = { screen = Screen.Restaurant })
                     Screen.Cinema -> CinemaBookingExperience()
+                    Screen.Music -> MusicPlayerScreen(onBack = { screen = Screen.Home })
                 }
             }
         }
@@ -58,7 +60,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun HomeScreen(
     onOpenRestaurant: () -> Unit,
-    onOpenCinema: () -> Unit
+    onOpenCinema: () -> Unit,
+    onOpenMusic: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -104,6 +107,17 @@ private fun HomeScreen(
                 listOf(Color(0xFF1A237E), Color(0xFF7B1FA2))
             ),
             onClick = onOpenCinema
+        )
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        DemoCard(
+            title = "Vinyl Music Player",
+            subtitle = "Spin physics · Album art · Live theming",
+            gradient = Brush.linearGradient(
+                listOf(Color(0xFFB14EFF), Color(0xFFFF006E))
+            ),
+            onClick = onOpenMusic
         )
     }
 }
