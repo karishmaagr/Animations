@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.karishma.swiggyanimation.music.MusicPlayerScreen
 import com.karishma.swiggyanimation.ui.theme.SwiggyAnimationTheme
 
 private enum class Screen { Home, Restaurant, Cart, Cinema, Music }
