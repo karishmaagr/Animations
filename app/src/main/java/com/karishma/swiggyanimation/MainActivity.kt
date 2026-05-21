@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
 import com.karishma.swiggyanimation.music.MusicPlayerScreen
 import com.karishma.swiggyanimation.ui.theme.SwiggyAnimationTheme
 
-private enum class Screen { Home, Restaurant, Cart, Cinema, Music }
+private enum class Screen { Home, Restaurant, Cart, Cinema, Music, Pokemon }
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,12 +46,14 @@ class MainActivity : ComponentActivity() {
                     Screen.Home -> HomeScreen(
                         onOpenRestaurant = { screen = Screen.Restaurant },
                         onOpenCinema = { screen = Screen.Cinema },
-                        onOpenMusic = { screen = Screen.Music }
+                        onOpenMusic = { screen = Screen.Music },
+                        onOpenPokemon = { screen = Screen.Pokemon }
                     )
                     Screen.Restaurant -> RestaurantScreen(onViewCart = { screen = Screen.Cart })
                     Screen.Cart -> CartScreen(onBack = { screen = Screen.Restaurant })
                     Screen.Cinema -> CinemaBookingExperience()
                     Screen.Music -> MusicPlayerScreen(onBack = { screen = Screen.Home })
+                    Screen.Pokemon -> PokemonCardScreen(onBack = { screen = Screen.Home })
                 }
             }
         }
@@ -62,7 +64,8 @@ class MainActivity : ComponentActivity() {
 private fun HomeScreen(
     onOpenRestaurant: () -> Unit,
     onOpenCinema: () -> Unit,
-    onOpenMusic: () -> Unit
+    onOpenMusic: () -> Unit,
+    onOpenPokemon: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -119,6 +122,17 @@ private fun HomeScreen(
                 listOf(Color(0xFFB14EFF), Color(0xFFFF006E))
             ),
             onClick = onOpenMusic
+        )
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        DemoCard(
+            title = "Pokémon Cards",
+            subtitle = "Holographic foil · 3D tilt · Drag to inspect",
+            gradient = Brush.linearGradient(
+                listOf(Color(0xFF00BCD4), Color(0xFF7C4DFF))
+            ),
+            onClick = onOpenPokemon
         )
     }
 }
